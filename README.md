@@ -13,7 +13,7 @@ It is possible to filter different fields of the Twitter response: just look at 
 ## Run it
 ```json``` and ```simplejson``` are the required Python libraries. Install them globally or in a virtual environment.
 
-```$ python tweepy_streamer.py > <filename>.json``` to write the entire tweet objects in the document
+```$ python tweepy_streamer.py``` to write the entire tweet objects in the document
 
 ```$ python tweets_printer.py > <filename>.txt``` to write the filtered fields in a txt file
 
