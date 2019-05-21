@@ -5,6 +5,7 @@ Thanks to [vprusso](https://github.com/vprusso/youtube_tutorials/tree/master/twi
 ## Overview
 * [twitter_credentials.py](twitter_credentials.py) contains the Twitter credentials.
 * [tweepy_streamer.py](tweepy_streamer.py) receives live tweets of a specified list of hashtags or keywords. Each tweet will be printed on stdout and also stored in a line of a json document. You can rename the filename at line 52.
+* [tweepy_streamer_limited.py](tweepy_streamer_limited.py) is a variant that collects a predefined number of tweets at most. You can change the parameter at line 10.
 * [tweets_printer.py](tweets_printer.py) reads each line of the previous file (you can rename the file it reads from at line 8) and prints id of the tweet, creation time, text, the user's id, name and screen name.
 * [json_object_creator.py](json_object_creator.py) reads each line of the streamer output (you can rename the file it reads from at line 8) and collects the previous fields in a dictionary. This dictionary is then converted into a JSON object and printed.
 
