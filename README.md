@@ -12,7 +12,7 @@ Thanks to [vprusso](https://github.com/vprusso/youtube_tutorials/tree/master/twi
 It is possible to filter different fields of the Twitter response: just look at [https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/tweet-object](https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/tweet-object)
 
 ## Run it
-```json``` and ```simplejson``` are the required Python libraries. Install them globally or in a virtual environment.
+```tweepy``` and ```simplejson``` are the required Python libraries. Install them globally or in a virtual environment.
 
 ```$ python tweepy_streamer.py``` to write the entire tweet objects in the document
 
