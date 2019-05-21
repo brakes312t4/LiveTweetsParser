@@ -46,10 +46,14 @@ class StdOutListener(StreamListener):
 
 
 if __name__ == "__main__":
+	# Ask the hashtag the user is interested in and the filename
+	hash_tag = input("Hashtag: ")
+	filename = input("Output filename: ")
+
 	# Authenticate and connect to Twitter Streaming API.
-	hash_tag_list = ["#NikiLauda"] # Put here the list of hashtags or keywords
+	hash_tag_list = [hash_tag]
 	lang_list = ["en"]
-	fetched_tweets_filename = "tweets.json" # Type here the filename
+	fetched_tweets_filename = filename
 
 	twitter_streamer = TwitterStreamer()
 	twitter_streamer.stream_tweets(fetched_tweets_filename, hash_tag_list, lang_list)

@@ -4,10 +4,14 @@ try:
 except ImportError:
 	import simplejson as json
 
-# We use the file saved
-tweets_filename = 'tweets.json'
-tweets_file = open(tweets_filename, "r")
+import sys
 
+# The input file is read from stdin
+if len(sys.argv) < 2:
+	sys.exit()
+
+tweets_filename = sys.argv[1]
+tweets_file = open(tweets_filename, "r")
 
 for line in tweets_file:
 	try:
