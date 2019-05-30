@@ -20,7 +20,7 @@ for tweet in tweepy.Cursor(api.search,q=hashtag, lang="en", since="2019-05-29").
 		"user" : {
 			"id" : tweet.user.id,
 			"name" : tweet.user.name, # name of the user, e.g. "Wei Xu"
-					"screen_name" : tweet.user.screen_name # name of the user account, e.g. "cocoweixu"
+			"screen_name" : tweet.user.screen_name # name of the user account, e.g. "cocoweixu"
 		},
 		"retweet_count": tweet.retweet_count
 	}
