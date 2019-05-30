@@ -7,7 +7,7 @@ import sys
 
 # # # # Variables for receiving a fixed number of tweets at most # # # #
 count = 0
-max_num_tweets = 200
+max_num_tweets = 100
 
 # # # # TWITTER STREAMER # # # #
 class TwitterStreamer():
