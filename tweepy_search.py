@@ -1,18 +1,23 @@
 import tweepy
 from tweepy import OAuthHandler
+import datetime
 import json
 
 import twitter_credentials
 
 # Ask the hashtag the user is interested in and the filename
 hashtag = input("Hashtag: ")
-filename = input("Output filename: ")
+filename = (hashtag.replace("#", "")).replace(" ", "_") + ".json"
+# filename = hashtag.replace(" ", "_") + ".json"
 
 auth = OAuthHandler(twitter_credentials.CONSUMER_KEY, twitter_credentials.CONSUMER_SECRET)
 auth.set_access_token(twitter_credentials.ACCESS_TOKEN, twitter_credentials.ACCESS_TOKEN_SECRET)
 api = tweepy.API(auth,wait_on_rate_limit=True)
 
-for tweet in tweepy.Cursor(api.search,q=hashtag, lang="en", since="2019-05-29").items(100):
+now = datetime.datetime.now()
+date = str(now.year) + '-' + str(now.month) + '-' + str(now.day)
+
+for tweet in tweepy.Cursor(api.search,q=hashtag, lang="en", since=date).items(100):
 	tweet_python_dictionary = {
 		"id":  tweet.id,
 		"created_at": str(tweet.created_at),
@@ -28,6 +33,6 @@ for tweet in tweepy.Cursor(api.search,q=hashtag, lang="en", since="2019-05-29").
 	# Convert the dictionary into a JSON object and print it
 	tweet_json_object = json.dumps(tweet_python_dictionary)	
 
-	with open(filename, "a") as tf:
+	with open("twitter_datasets/" + filename, "a") as tf:
 		tf.write(str(tweet_json_object) + "\n")
 		print(str(tweet_json_object) + "\n")
