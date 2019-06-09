@@ -17,22 +17,27 @@ api = tweepy.API(auth,wait_on_rate_limit=True)
 now = datetime.datetime.now()
 date = str(now.year) + '-' + str(now.month) + '-' + str(now.day)
 
-for tweet in tweepy.Cursor(api.search,q=hashtag, lang="en", since=date).items(100):
-	tweet_python_dictionary = {
-		"id":  tweet.id,
-		"created_at": str(tweet.created_at),
-		"text": tweet.text,
-		"user" : {
-			"id" : tweet.user.id,
-			"name" : tweet.user.name, # name of the user, e.g. "Wei Xu"
-			"screen_name" : tweet.user.screen_name # name of the user account, e.g. "cocoweixu"
-		},
-		"retweet_count": tweet.retweet_count
-	}
-	
-	# Convert the dictionary into a JSON object and print it
-	tweet_json_object = json.dumps(tweet_python_dictionary)	
+list_texts = []
 
-	with open("twitter_datasets/" + filename, "a") as tf:
-		tf.write(str(tweet_json_object) + "\n")
-		print(str(tweet_json_object) + "\n")
+for tweet in tweepy.Cursor(api.search,q=hashtag, lang="en", since=date).items(30):
+	if tweet.text not in list_texts:
+		tweet_python_dictionary = {
+			"id":  tweet.id,
+			"created_at": str(tweet.created_at),
+			"text": tweet.text,
+			"user" : {
+				"id" : tweet.user.id,
+				"name" : tweet.user.name, # name of the user, e.g. "Wei Xu"
+				"screen_name" : tweet.user.screen_name # name of the user account, e.g. "cocoweixu"
+			},
+			"retweet_count": tweet.retweet_count
+		}
+
+		list_texts.append(tweet.text)
+
+		# Convert the dictionary into a JSON object and print it
+		tweet_json_object = json.dumps(tweet_python_dictionary)	
+
+		with open("twitter_datasets/" + filename, "a") as tf:
+			tf.write(str(tweet_json_object) + "\n")
+			print(str(tweet_json_object) + "\n")
